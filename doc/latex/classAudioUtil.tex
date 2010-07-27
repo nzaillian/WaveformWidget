@@ -1,0 +1,222 @@
+\hypertarget{classAudioUtil}{
+\section{AudioUtil Class Reference}
+\label{classAudioUtil}\index{AudioUtil@{AudioUtil}}
+}
+
+
+Provides a number of utilities for pulling useful data from audio files.  
+
+
+{\ttfamily \#include $<$AudioUtil.h$>$}\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries FileHandlingMode} \{ {\bfseries FULL\_\-CACHE}, 
+{\bfseries DISK\_\-MODE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAudioUtil_a6d030f910af2f43c606be1bee03ed18e}{AudioUtil} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classAudioUtil_a8c8a360f57a0fe1ab48b8571e4ff609b}{AudioUtil} (string filePath)
+\begin{DoxyCompactList}\small\item\em Alternate, single-\/parameter constructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classAudioUtil_a5f477f4385a0da16f930d627dc168723}{setFile} (string filePath)
+\begin{DoxyCompactList}\small\item\em Sets the file to be wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. \item\end{DoxyCompactList}\item 
+int \hyperlink{classAudioUtil_ab426f4ff941e0e7eeb68c2c1eb0cb333}{getNumChannels} ()
+\begin{DoxyCompactList}\small\item\em The number of channels of the wrapped audio file. \item\end{DoxyCompactList}\item 
+int \hyperlink{classAudioUtil_afd587ae3381e94d76e826e76d2a38378}{getSampleRate} ()
+\begin{DoxyCompactList}\small\item\em The sample rate of the wrapped audio file. \item\end{DoxyCompactList}\item 
+int \hyperlink{classAudioUtil_ad4d581baa08a44c7c5d2ee05f589dcf1}{getTotalFrames} ()
+\begin{DoxyCompactList}\small\item\em The total number of frames of the wrapped audio file. \item\end{DoxyCompactList}\item 
+vector$<$ double $>$ \hyperlink{classAudioUtil_a13513ca40750bfc2c71e269e1826fadc}{calculateNormalizedPeaks} ()
+\begin{DoxyCompactList}\small\item\em Calculates peak values for the normalized audio data of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. \item\end{DoxyCompactList}\item 
+vector$<$ double $>$ \hyperlink{classAudioUtil_a6aa717262c503b4c6b238fdebdc1d1ca}{grabFrame} (int frameIndex)
+\begin{DoxyCompactList}\small\item\em Get a given frame of the wrapped audio file. \item\end{DoxyCompactList}\item 
+vector$<$ double $>$ \hyperlink{classAudioUtil_ac32f8bd852e56ada63ea24fa666c08db}{peakForRegion} (int region\_\-start\_\-frame, int region\_\-end\_\-frame)
+\begin{DoxyCompactList}\small\item\em Peak for a given region of the wrapped audio file. \item\end{DoxyCompactList}\item 
+vector$<$ double $>$ \hyperlink{classAudioUtil_a6cd1c1137a4ab43565ea6275e5dc0eb4}{getAllFrames} ()
+\begin{DoxyCompactList}\small\item\em The content of the wrapped audio file. \item\end{DoxyCompactList}\item 
+FileHandlingMode \hyperlink{classAudioUtil_af2e6ba95a82a2a28cb880247e22b9e64}{getFileHandlingMode} ()
+\begin{DoxyCompactList}\small\item\em Accessor for an instance of AudioUtil's file-\/handling mode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classAudioUtil_aa6e29dfd59fb16462f5ee00ce7c311db}{setFileHandlingMode} (FileHandlingMode mode)
+\begin{DoxyCompactList}\small\item\em The mutator for the file-\/handling mode of an instance of \hyperlink{classAudioUtil}{AudioUtil}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides a number of utilities for pulling useful data from audio files. This class began as a nice, object-\/oriented wrapper for certain functions that I found myself frequently using in Erik de Castro Lopo's \href{http://www.mega-nerd.com/libsndfile/}{\tt libsndfile}. It now supports an optional caching scheme (enabled by calling setFileHandlingMode(AudioUtil::FULL\_\-CACHE) on an instance of \hyperlink{classAudioUtil}{AudioUtil}) to dramatically speed up the performance of certain functions, like that for accessing arbitrary frames (\hyperlink{classAudioUtil_a6aa717262c503b4c6b238fdebdc1d1ca}{grabFrame()}) of an audio file and that for determining the peak value for a given region of an audio file (\hyperlink{classAudioUtil_ac32f8bd852e56ada63ea24fa666c08db}{peakForRegion()}). 
+
+Definition at line 27 of file AudioUtil.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAudioUtil_a6d030f910af2f43c606be1bee03ed18e}{
+\index{AudioUtil@{AudioUtil}!AudioUtil@{AudioUtil}}
+\index{AudioUtil@{AudioUtil}!AudioUtil@{AudioUtil}}
+\subsubsection[{AudioUtil}]{\setlength{\rightskip}{0pt plus 5cm}AudioUtil::AudioUtil ()}}
+\label{classAudioUtil_a6d030f910af2f43c606be1bee03ed18e}
+
+
+Default constructor. Constructs instance of \hyperlink{classAudioUtil}{AudioUtil}. An \hyperlink{classAudioUtil}{AudioUtil} instance created using this constructor is effectively useless until its \hyperlink{classAudioUtil_a5f477f4385a0da16f930d627dc168723}{setFile()} function has been invoked with a valid path to a WAV file. For this reason, you may elect to use the alternate \hyperlink{classAudioUtil}{AudioUtil} constructor, which takes such a path as a parameter. 
+
+Definition at line 15 of file AudioUtil.cpp.\hypertarget{classAudioUtil_a8c8a360f57a0fe1ab48b8571e4ff609b}{
+\index{AudioUtil@{AudioUtil}!AudioUtil@{AudioUtil}}
+\index{AudioUtil@{AudioUtil}!AudioUtil@{AudioUtil}}
+\subsubsection[{AudioUtil}]{\setlength{\rightskip}{0pt plus 5cm}AudioUtil::AudioUtil (string {\em filePath})}}
+\label{classAudioUtil_a8c8a360f57a0fe1ab48b8571e4ff609b}
+
+
+Alternate, single-\/parameter constructor. Alternate constructor. An instance of \hyperlink{classAudioUtil}{AudioUtil} created using this constructor does not need to have its \hyperlink{classAudioUtil_a5f477f4385a0da16f930d627dc168723}{setFile()} function explicitly invoked to be useful.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em filePath}]path to a WAV file \end{DoxyParams}
+
+
+Definition at line 30 of file AudioUtil.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classAudioUtil_a13513ca40750bfc2c71e269e1826fadc}{
+\index{AudioUtil@{AudioUtil}!calculateNormalizedPeaks@{calculateNormalizedPeaks}}
+\index{calculateNormalizedPeaks@{calculateNormalizedPeaks}!AudioUtil@{AudioUtil}}
+\subsubsection[{calculateNormalizedPeaks}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ double $>$ AudioUtil::calculateNormalizedPeaks ()}}
+\label{classAudioUtil_a13513ca40750bfc2c71e269e1826fadc}
+
+
+Calculates peak values for the normalized audio data of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. \begin{DoxyReturn}{Returns}
+a vector containing the peak for each channel of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. in the case of an error, an empty vector is returned. 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file AudioUtil.cpp.\hypertarget{classAudioUtil_a6cd1c1137a4ab43565ea6275e5dc0eb4}{
+\index{AudioUtil@{AudioUtil}!getAllFrames@{getAllFrames}}
+\index{getAllFrames@{getAllFrames}!AudioUtil@{AudioUtil}}
+\subsubsection[{getAllFrames}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ double $>$ AudioUtil::getAllFrames ()}}
+\label{classAudioUtil_a6cd1c1137a4ab43565ea6275e5dc0eb4}
+
+
+The content of the wrapped audio file. Function to get all frames of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil} as a vector of double-\/precision floating-\/point values.
+
+\begin{DoxyReturn}{Returns}
+a vector of double-\/precision floating-\/point values representing all frames of the audio file wrapped by this instance of \hyperlink{classAudioUtil}{AudioUtil}. 
+\end{DoxyReturn}
+
+
+Definition at line 462 of file AudioUtil.cpp.\hypertarget{classAudioUtil_af2e6ba95a82a2a28cb880247e22b9e64}{
+\index{AudioUtil@{AudioUtil}!getFileHandlingMode@{getFileHandlingMode}}
+\index{getFileHandlingMode@{getFileHandlingMode}!AudioUtil@{AudioUtil}}
+\subsubsection[{getFileHandlingMode}]{\setlength{\rightskip}{0pt plus 5cm}AudioUtil::FileHandlingMode AudioUtil::getFileHandlingMode ()}}
+\label{classAudioUtil_af2e6ba95a82a2a28cb880247e22b9e64}
+
+
+Accessor for an instance of AudioUtil's file-\/handling mode. \begin{DoxyReturn}{Returns}
+the mode of this \hyperlink{classAudioUtil}{AudioUtil} instance 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file AudioUtil.cpp.\hypertarget{classAudioUtil_ab426f4ff941e0e7eeb68c2c1eb0cb333}{
+\index{AudioUtil@{AudioUtil}!getNumChannels@{getNumChannels}}
+\index{getNumChannels@{getNumChannels}!AudioUtil@{AudioUtil}}
+\subsubsection[{getNumChannels}]{\setlength{\rightskip}{0pt plus 5cm}int AudioUtil::getNumChannels ()}}
+\label{classAudioUtil_ab426f4ff941e0e7eeb68c2c1eb0cb333}
+
+
+The number of channels of the wrapped audio file. \begin{DoxyReturn}{Returns}
+the number of channels in the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil} 
+\end{DoxyReturn}
+
+
+Definition at line 174 of file AudioUtil.cpp.\hypertarget{classAudioUtil_afd587ae3381e94d76e826e76d2a38378}{
+\index{AudioUtil@{AudioUtil}!getSampleRate@{getSampleRate}}
+\index{getSampleRate@{getSampleRate}!AudioUtil@{AudioUtil}}
+\subsubsection[{getSampleRate}]{\setlength{\rightskip}{0pt plus 5cm}int AudioUtil::getSampleRate ()}}
+\label{classAudioUtil_afd587ae3381e94d76e826e76d2a38378}
+
+
+The sample rate of the wrapped audio file. \begin{DoxyReturn}{Returns}
+the sample rate of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil} 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file AudioUtil.cpp.\hypertarget{classAudioUtil_ad4d581baa08a44c7c5d2ee05f589dcf1}{
+\index{AudioUtil@{AudioUtil}!getTotalFrames@{getTotalFrames}}
+\index{getTotalFrames@{getTotalFrames}!AudioUtil@{AudioUtil}}
+\subsubsection[{getTotalFrames}]{\setlength{\rightskip}{0pt plus 5cm}int AudioUtil::getTotalFrames ()}}
+\label{classAudioUtil_ad4d581baa08a44c7c5d2ee05f589dcf1}
+
+
+The total number of frames of the wrapped audio file. \begin{DoxyReturn}{Returns}
+the number of frames of the wrapped audio file. 
+\end{DoxyReturn}
+
+
+Definition at line 201 of file AudioUtil.cpp.\hypertarget{classAudioUtil_a6aa717262c503b4c6b238fdebdc1d1ca}{
+\index{AudioUtil@{AudioUtil}!grabFrame@{grabFrame}}
+\index{grabFrame@{grabFrame}!AudioUtil@{AudioUtil}}
+\subsubsection[{grabFrame}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ double $>$ AudioUtil::grabFrame (int {\em frameIndex})}}
+\label{classAudioUtil_a6aa717262c503b4c6b238fdebdc1d1ca}
+
+
+Get a given frame of the wrapped audio file. Function to get the frame at a given index in the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. Will return a double-\/precision floating point vector of dimension equal to the number\_\-of\_\-channels in the wrapped file (either 1 or 2) containing the data of the requested frame. In the case that a frame is requested which is out of bounds, an error message will be printed and an empty vector returned.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em frameIndex}]The desired frame.\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of double-\/precision floating point values representing the contents of the requested frame. In the case that an out-\/of-\/bounds frame is requested, an empty vector will be returned. 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file AudioUtil.cpp.\hypertarget{classAudioUtil_ac32f8bd852e56ada63ea24fa666c08db}{
+\index{AudioUtil@{AudioUtil}!peakForRegion@{peakForRegion}}
+\index{peakForRegion@{peakForRegion}!AudioUtil@{AudioUtil}}
+\subsubsection[{peakForRegion}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ double $>$ AudioUtil::peakForRegion (int {\em region\_\-start\_\-frame}, \/  int {\em region\_\-end\_\-frame})}}
+\label{classAudioUtil_ac32f8bd852e56ada63ea24fa666c08db}
+
+
+Peak for a given region of the wrapped audio file. Function to get the peak for each channel of a given region of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. Returns a vector of double-\/precision floating point values representing this data. In the case that an invalid region is specified by the function's parameters, prints an error message and returns an empty vector. This function performs drastically better when the \hyperlink{classAudioUtil}{AudioUtil} instance it is being invoked with is operating in FULL\_\-CACHE mode rather than DISK\_\-MODE.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em region\_\-start\_\-frame}]The frame marking the beginning of the region to be analyzed \item[{\em region\_\-end\_\-frame}]The frame marking the end of the region to be analyzed \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of double-\/precision floating point values representing the peak for each channel of the specified region of the audio file wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. In the case that an invalid region has been specified, return value is an empty vector. 
+\end{DoxyReturn}
+
+
+Definition at line 317 of file AudioUtil.cpp.\hypertarget{classAudioUtil_a5f477f4385a0da16f930d627dc168723}{
+\index{AudioUtil@{AudioUtil}!setFile@{setFile}}
+\index{setFile@{setFile}!AudioUtil@{AudioUtil}}
+\subsubsection[{setFile}]{\setlength{\rightskip}{0pt plus 5cm}bool AudioUtil::setFile (string {\em filePath})}}
+\label{classAudioUtil_a5f477f4385a0da16f930d627dc168723}
+
+
+Sets the file to be wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. Set the audio file to be wrapped by an instance of \hyperlink{classAudioUtil}{AudioUtil}. This function must be passed a string representing a valid path to a WAV file. In the case that it is not given such a string, it will print an error message and return false. Otherwise, it will return true.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em filePath}]a string representing a valid path to a WAV file. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if file was successfully set, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file AudioUtil.cpp.\hypertarget{classAudioUtil_aa6e29dfd59fb16462f5ee00ce7c311db}{
+\index{AudioUtil@{AudioUtil}!setFileHandlingMode@{setFileHandlingMode}}
+\index{setFileHandlingMode@{setFileHandlingMode}!AudioUtil@{AudioUtil}}
+\subsubsection[{setFileHandlingMode}]{\setlength{\rightskip}{0pt plus 5cm}void AudioUtil::setFileHandlingMode (FileHandlingMode {\em mode})}}
+\label{classAudioUtil_aa6e29dfd59fb16462f5ee00ce7c311db}
+
+
+The mutator for the file-\/handling mode of an instance of \hyperlink{classAudioUtil}{AudioUtil}. \hyperlink{classAudioUtil}{AudioUtil} objects can function in one of two modes: \hyperlink{}{AudioUtil::DISK\_\-MODE} and \hyperlink{}{AudioUtil::FULL\_\-CACHE} mode. The default mode for \hyperlink{classAudioUtil}{AudioUtil} objects is DISK\_\-MODE. In DISK\_\-MODE, an instance of \hyperlink{classAudioUtil}{AudioUtil} will dynamically load a region of the audio file it wraps from disk into memory when asked to analyze or return this region (when the peakForRegion, getAllFrames and grabFrame function are invoked, for example). This keeps memory use minimal, but has an immense consequence with respect to performance. Upon being set to FULL\_\-CACHE mode, an \hyperlink{classAudioUtil}{AudioUtil} instance will load the entire audio file that it wraps into memory (storing it as a vector of double-\/precision floating point values), and use this cached data to perform the operations that, in DISK\_\-MODE, require that data be loaded dynamically from disk for processing. In FULL\_\-CACHE mode, you get drastically increased performance, but pay a penalty in increased memory consumption.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em mode}]file-\/handling scheme for the \hyperlink{classAudioUtil}{AudioUtil} instance. Valid options: \hyperlink{}{AudioUtil::DISK\_\-MODE}, \hyperlink{}{AudioUtil::FULL\_\-CACHE} \end{DoxyParams}
+
+
+Definition at line 68 of file AudioUtil.cpp.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{AudioUtil_8h}{AudioUtil.h}\item 
+\hyperlink{AudioUtil_8cpp}{AudioUtil.cpp}\end{DoxyCompactItemize}
